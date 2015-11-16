@@ -36,7 +36,6 @@ class Paciente(Objeto):
             cursor.execute(query, (str(self.contar)), self.nombres, self.apellidos, self.direccion, self.telefono,)
             conexion.commit()
             cursor.close()
-            print query
         else:
             cursor.close()
             self.modificar()
@@ -45,8 +44,6 @@ class Paciente(Objeto):
         query = (self.query_update+' paciente_nombres = %s , \
            paciente_apellidos =%s, paciente_direccion=%s, paciente_telefono =%s\
            '+self.query_update_end)
-
-        print query
         conexion = self.conexion.getConnection()
         cursor= conexion.cursor()
         cursor.execute(query,(self.nombres, self.apellidos, self.direccion, self.telefono))

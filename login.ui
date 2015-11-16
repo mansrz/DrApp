@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>350</width>
-    <height>186</height>
+    <height>213</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>10</x>
      <y>10</y>
      <width>331</width>
-     <height>171</height>
+     <height>191</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -34,9 +34,9 @@
    <widget class="QPushButton" name="boton_iniciarsesion">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>130</y>
-      <width>111</width>
+      <x>100</x>
+      <y>150</y>
+      <width>141</width>
       <height>27</height>
      </rect>
     </property>
@@ -44,13 +44,13 @@
      <string>Iniciar Sesión </string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>30</y>
       <width>301</width>
-      <height>29</height>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -64,22 +64,29 @@
         </font>
        </property>
        <property name="text">
-        <string>Usuario:        </string>
+        <string>Usuario:   </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="input_usuario"/>
+      <widget class="QLineEdit" name="input_usuario">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>80</y>
       <width>301</width>
-      <height>29</height>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -99,6 +106,12 @@
      </item>
      <item>
       <widget class="QLineEdit" name="input_pwd">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
        </property>
@@ -106,12 +119,9 @@
      </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>boton_iniciarsesion</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>input_usuario</zorder>
-   <zorder>input_pwd</zorder>
-   <zorder>label</zorder>
   </widget>
  </widget>
  <resources/>
