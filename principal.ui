@@ -78,7 +78,7 @@
       <rect>
        <x>300</x>
        <y>80</y>
-       <width>201</width>
+       <width>141</width>
        <height>21</height>
       </rect>
      </property>
@@ -94,9 +94,9 @@
     <widget class="QLabel" name="txt_apellido">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>450</x>
        <y>80</y>
-       <width>201</width>
+       <width>161</width>
        <height>21</height>
       </rect>
      </property>
@@ -128,7 +128,7 @@
    </widget>
    <widget class="QMenu" name="menuClientes">
     <property name="title">
-     <string>Clientes</string>
+     <string>Paciente</string>
     </property>
     <addaction name="action_cliente"/>
    </widget>
