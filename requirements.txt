@@ -1,2 +1,4 @@
 python 2.7
 MySQLdb-python
+pip install qdarkstyle
+https://www.riverbankcomputing.com/software/pyqt/download

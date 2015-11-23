@@ -21,19 +21,19 @@ class Objeto():
 
   def inicializar(self):
     tabla = self.tabla
-    atributos = self.atributos
+    atributos = str(self.atributos).split('[')[1].split(']')[0]
     self.query_insert = 'INSERT INTO '+tabla.title()+' ('+atributos+') VALUES ('
     self.query_insert_end = ');'
     self.query_update = 'UPDATE '+tabla.title()+' SET '
-    self.query_update_end = ' WHERE '+tabla+'_id= %s ;'
-    self.query_delete = 'DELETE FROM '+tabla.title()+ ' WHERE '+tabla+'_id = %s ;'
+    self.query_update_end = ' WHERE '+tabla+'_id= ? ;'
+    self.query_delete = 'DELETE FROM '+tabla.title()+ ' WHERE '+tabla+'_id =?'
     self.query_delete_all = 'DELETE FROM ' + tabla.title() + ' ;'
     self.query_select_all = 'SELECT * FROM '+ tabla.title() +' ;'
-    self.query_select_me  = 'SELECT * FROM '+ tabla.title() +' WHERE '+tabla+'_id =%s ;'
+    self.query_select_me  = 'SELECT * FROM '+ tabla.title() +' WHERE '+tabla+'_id =?;'
     self.query_search = 'SELECT * FROM '+ tabla.title() + ' WHERE '+ tabla + '_'
-    self.query_search_end = ' =%s ;'
+    self.query_search_end = ' = ? COLLATE NOCASE;'
     self.query_search_date = 'SELECT * FROM ' + tabla.title() + ' WHERE ' + tabla + '_'
-    self.query_search_date_end = ' BETWEEN %s and %s ;'
+    self.query_search_date_end = ' BETWEEN ? and ? ;'
 
   def contar(self):
     query = ('SELECT '+self.tabla+'_id from '+self.tabla.title()+' ORDER BY '+self.tabla+'_id DESC LIMIT 1;')
@@ -82,10 +82,7 @@ class Objeto():
     query = self.query_search_date + name + self.query_search_date_end
     conexion = self.conexion.getConnection()
     cursor = conexion.cursor()
-    cursor.execute(query,(desde,hasta))
-    #cursor.execute(query,('2005-01-01','2009-01-01'))
-    result = cursor.fetchall()
-    lista = self.enlistar(result)
+    cursor.execute(query,(desde,hasta)) #cursor.execute(query,('2005-01-01','2009-01-01')) result = cursor.fetchall() lista = self.enlistar(result)
     cursor.close()
     return lista
 
@@ -99,19 +96,29 @@ class Objeto():
     cursor.close()
 
   def eliminar(self):
-    pk = self.id
     query = self.query_delete
     conexion = self.conexion.getConnection()
-    cursor= conexion.cursor()
-    cursor.execute(query,(pk,))
-    conexion.commit()
-    cursor.close()
+    cursor = conexion.cursor()
+    try:
+        cursor.execute(query,(self.id,))
+        print(query)
+        conexion.commit()
+        cursor.close()
+        return True
+    except:
+        cursor.close()
+        return False
 
   def eliminar_todo(self):
     query = self.query_delete_all
     conexion = self.conexion.getConnection()
     cursor = conexion.cursor()
-    cursor.execute(query)
-    conexion.commit()
-    cursor.close()
+    try:
+        cursor.execute(query)
+        conexion.commit()
+        cursor.close()
+        return True
+    except:
+        cursor.close()
+        return False
 

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>636</width>
-    <height>474</height>
+    <width>697</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>10</x>
      <y>20</y>
      <width>771</width>
-     <height>531</height>
+     <height>451</height>
     </rect>
    </property>
    <widget class="QTabWidget" name="tabWidget">
@@ -30,18 +30,18 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>611</width>
-      <height>441</height>
+      <width>681</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Consultar</string>
      </attribute>
-     <widget class="QTableView" name="tb_clientes">
+     <widget class="QTableView" name="tb_consultas">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -92,7 +92,7 @@
        <string>Buscar</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_nombre">
+     <widget class="QRadioButton" name="radioButton_cliente">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -105,7 +105,7 @@
        <string>Buscar por cliente</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_apellido">
+     <widget class="QRadioButton" name="radioButton_observacion">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -118,7 +118,7 @@
        <string>Buscar por Observacion</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_cedula">
+     <widget class="QRadioButton" name="radioButton_doctor">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -128,177 +128,19 @@
        </rect>
       </property>
       <property name="text">
-       <string>Buscar por fecha</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>Modificar</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>581</width>
-        <height>281</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_6">
-         <item>
-          <widget class="QLabel" name="label_14">
-           <property name="text">
-            <string>Paciente</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_15">
-           <property name="text">
-            <string>Observaciones</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_16">
-           <property name="text">
-            <string>Observaciones</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <item>
-            <widget class="QComboBox" name="comboBox_3">
-             <property name="minimumSize">
-              <size>
-               <width>70</width>
-               <height>30</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_3">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>20</width>
-               <height>1</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>+</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_8">
-           <item>
-            <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
-             <item>
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>20</width>
-                 <height>1</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>+</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QPushButton" name="btn_guardar_3">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>360</y>
-        <width>98</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Actualizar</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>281</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>MODIFICAR CONSULTA</string>
+       <string>Buscar por doctor</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
-      <string>Ingresar</string>
+      <string>Mantenimiento</string>
      </attribute>
      <widget class="QPushButton" name="btn_guardar">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>360</y>
+        <x>560</x>
+        <y>380</y>
         <width>98</width>
         <height>27</height>
        </rect>
@@ -322,16 +164,16 @@
        </font>
       </property>
       <property name="text">
-       <string>INGRESAR CONSULTA</string>
+       <string>CONSULTA</string>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>60</y>
-        <width>581</width>
-        <height>281</height>
+        <width>421</width>
+        <height>351</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -340,21 +182,49 @@
          <item>
           <widget class="QLabel" name="label_11">
            <property name="text">
-            <string>Paciente</string>
+            <string>Paciente:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="label_12">
            <property name="text">
-            <string>Observaciones</string>
+            <string>Observaciones:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="label_13">
            <property name="text">
-            <string>Observaciones</string>
+            <string>Documentos:</string>
            </property>
           </widget>
          </item>
@@ -365,7 +235,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QComboBox" name="comboBox_2">
+            <widget class="QComboBox" name="cbo_paciente">
              <property name="minimumSize">
               <size>
                <width>70</width>
@@ -374,13 +244,14 @@
              </property>
             </widget>
            </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
            <item>
-            <widget class="QPushButton" name="pushButton">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
+            <widget class="QPlainTextEdit" name="txt_observacion">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -388,31 +259,15 @@
              <property name="minimumSize">
               <size>
                <width>20</width>
-               <height>1</height>
+               <height>20</height>
               </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>+</string>
              </property>
             </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <widget class="QPlainTextEdit" name="plainTextEdit"/>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="btn_documento">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -447,11 +302,11 @@
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="btn_guardar_2">
+     <widget class="QPushButton" name="btn_cerrar">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>360</y>
+        <x>450</x>
+        <y>380</y>
         <width>98</width>
         <height>27</height>
        </rect>
@@ -460,24 +315,34 @@
        <string>Cerrar</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>60</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Documentos</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="tb_documentos">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>90</y>
+        <width>211</width>
+        <height>231</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Eliminar</string>
      </attribute>
-     <widget class="QPushButton" name="btn_eliminar_selec">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>350</y>
-        <width>131</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Eliminar Seleccion</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="btn_eliminar_todo">
       <property name="geometry">
        <rect>
@@ -488,7 +353,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Eliminar Todo</string>
+       <string>Actualizar</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_10">
@@ -509,7 +374,7 @@
        <string>ELIMINAR CONSULTA</string>
       </property>
      </widget>
-     <widget class="QTableView" name="tb_clientes_eliminar">
+     <widget class="QTableView" name="tb_eliminar">
       <property name="geometry">
        <rect>
         <x>40</x>

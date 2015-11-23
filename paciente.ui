@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cliente</string>
+   <string>Pacientes</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
@@ -35,13 +35,13 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Consultar</string>
      </attribute>
-     <widget class="QTableView" name="tb_clientes">
+     <widget class="QTableView" name="tb_pacientes">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -54,7 +54,7 @@
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>290</x>
         <y>20</y>
         <width>261</width>
         <height>20</height>
@@ -72,9 +72,9 @@
      <widget class="QLineEdit" name="txt_buscar">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>80</y>
-        <width>241</width>
+        <x>190</x>
+        <y>70</y>
+        <width>291</width>
         <height>27</height>
        </rect>
       </property>
@@ -83,7 +83,7 @@
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>80</y>
+        <y>70</y>
         <width>101</width>
         <height>27</height>
        </rect>
@@ -92,17 +92,46 @@
        <string>Buscar</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_apellido">
+     <widget class="QRadioButton" name="radioButton_nombre">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>80</y>
-        <width>191</width>
+        <x>10</x>
+        <y>30</y>
+        <width>161</width>
         <height>22</height>
        </rect>
       </property>
       <property name="text">
        <string>Buscar por Nombre</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_apellido">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>161</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar por Apellido</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_cedula">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>161</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar por Cedula</string>
       </property>
      </widget>
     </widget>
@@ -141,7 +170,7 @@
        <string>INGRESAR PACIENTE</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_guardar_2">
+     <widget class="QPushButton" name="btn_cerrar">
       <property name="geometry">
        <rect>
         <x>380</x>
@@ -160,7 +189,7 @@
         <x>120</x>
         <y>60</y>
         <width>291</width>
-        <height>261</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -201,20 +230,6 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Mail</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Nacimiento</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item>
@@ -226,28 +241,19 @@
           <widget class="QLineEdit" name="txt_apellido"/>
          </item>
          <item>
-          <widget class="QLineEdit" name="txt_cedula"/>
+          <widget class="QLineEdit" name="txt_cedula">
+           <property name="inputMethodHints">
+            <set>Qt::ImhDigitsOnly</set>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QLineEdit" name="txt_direccion"/>
          </item>
          <item>
-          <widget class="QLineEdit" name="txt_telefono"/>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="txt_mail"/>
-         </item>
-         <item>
-          <widget class="QDateEdit" name="txt_nacimiento">
-           <property name="minimumDate">
-            <date>
-             <year>2014</year>
-             <month>9</month>
-             <day>16</day>
-            </date>
-           </property>
-           <property name="calendarPopup">
-            <bool>true</bool>
+          <widget class="QLineEdit" name="txt_telefono">
+           <property name="inputMethodHints">
+            <set>Qt::ImhDigitsOnly</set>
            </property>
           </widget>
          </item>
@@ -260,19 +266,6 @@
      <attribute name="title">
       <string>Eliminar</string>
      </attribute>
-     <widget class="QPushButton" name="btn_eliminar_selec">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>350</y>
-        <width>131</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Eliminar Seleccion</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="btn_eliminar_todo">
       <property name="geometry">
        <rect>
@@ -283,7 +276,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Eliminar Todo</string>
+       <string>Eliminar</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_10">
@@ -304,7 +297,7 @@
        <string>ELIMINAR PACIENTE</string>
       </property>
      </widget>
-     <widget class="QTableView" name="tb_clientes_eliminar">
+     <widget class="QTableView" name="tb_eliminar">
       <property name="geometry">
        <rect>
         <x>40</x>
