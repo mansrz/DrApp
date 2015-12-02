@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>560</width>
-    <height>493</height>
+    <height>543</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -85,7 +85,7 @@
    <widget class="QPushButton" name="btn_generar">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>420</x>
       <y>50</y>
       <width>92</width>
       <height>27</height>
@@ -95,6 +95,19 @@
      <string>Generar</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="btn_cerrar">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>500</y>
+     <width>98</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cerrar</string>
+   </property>
   </widget>
  </widget>
  <resources/>

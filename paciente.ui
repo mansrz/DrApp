@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>636</width>
-    <height>474</height>
+    <height>484</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,7 @@
       <x>0</x>
       <y>0</y>
       <width>611</width>
-      <height>441</height>
+      <height>421</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -170,19 +170,6 @@
        <string>INGRESAR PACIENTE</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_cerrar">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>360</y>
-        <width>98</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cerrar</string>
-      </property>
-     </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
@@ -308,6 +295,19 @@
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="btn_cerrar">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>430</y>
+      <width>98</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cerrar</string>
+    </property>
    </widget>
   </widget>
  </widget>

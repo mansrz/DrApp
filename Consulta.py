@@ -58,7 +58,6 @@ class Consulta(Objeto):
         if cursor.fetchone() is None:
             pk = str(self.contar())
             query = self.query_insert + '?,?,?,?,?,?,?' + self.query_insert_end
-            print(query)
             try:
                 cursor.execute(query, (pk, str(datetime.datetime.now().date())
 , self.paciente.id, self.doctor.id, self.observaciones, self.extra, self.extra2))
@@ -67,8 +66,6 @@ class Consulta(Objeto):
                 print(query)
                 for documento in self.documentos:
                     documento.consulta = pk
-                    print(documento)
-                    print(documento.nuevo)
                     documento.guardar()
                 return True
             except:
@@ -80,13 +77,17 @@ class Consulta(Objeto):
 
     def modificar(self):
         query = (self.query_update+' consulta_fecha = ? , \
-           consulta_paciente =?, consulta_doctor =?, consulta_observaciones = ? \
+           consulta_paciente =?, consulta_doctor =?, consulta_observaciones = ?,\
            consulta_extra = ?, consulta_extra2 = ?'+self.query_update_end)
         conexion = self.conexion.getConnection()
         cursor= conexion.cursor()
         try:
-            cursor.execute(query, (self.fecha, self.paciente, self.doctor, self.observaciones, self.extra, self.extra2, self.id))
+            cursor.execute(query, (self.fecha, self.paciente.id, self.doctor.id, self.observaciones, self.extra, self.extra2, self.id))
             conexion.commit()
+            for documento in self.documentos:
+                documento.consulta = self.id
+                if documento.nuevo:
+                    documento.guardar()
             cursor.close()
             return True
         except:

@@ -30,11 +30,14 @@ class Documento(Objeto):
         consulta = 'SELECT * FROM Documento WHERE documento_id = ?;'
         if not self.nuevo:
             return
+        print(consulta)
         conexion = self.conexion.getConnection()
         cursor = conexion.cursor()
         cursor.execute(consulta, (str(self.id),))
+        print(consulta)
         if cursor.fetchone() is None:
             query = self.query_insert + '?,?,?,?' + self.query_insert_end
+            print(query)
             try:
                 cursor.execute(query, (str(self.contar()), self.data, self.consulta, self.nombre))
                 conexion.commit()

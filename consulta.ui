@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>697</width>
-    <height>561</height>
+    <height>588</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -302,19 +302,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="btn_cerrar">
-      <property name="geometry">
-       <rect>
-        <x>450</x>
-        <y>460</y>
-        <width>98</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Cerrar</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
@@ -399,6 +386,19 @@
      </widget>
     </widget>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="btn_cerrar">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>560</y>
+     <width>98</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cerrar</string>
+   </property>
   </widget>
  </widget>
  <resources/>

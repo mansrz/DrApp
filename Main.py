@@ -3,8 +3,7 @@ from PyQt5 import QtGui,QtCore, uic, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-import re
-#CLASES
+import re #CLASES
 from Conexion import *
 from Doctor import *
 from Paciente import *
@@ -16,7 +15,7 @@ cliente = uic.loadUiType('paciente.ui')[0]
 doctor = uic.loadUiType('doctor.ui')[0]
 reporte = uic.loadUiType('reporte.ui')[0]
 acercade = uic.loadUiType('acercade.ui')[0]
-estilo = open('st.stylesheet','r').read()
+estilo = open('st.css','r').read()
 principal_ui = uic.loadUiType('principal.ui')[0]
 
 class VentanaDoctor(QDialog, doctor):
@@ -25,7 +24,6 @@ class VentanaDoctor(QDialog, doctor):
     def __init__(self, parent =  None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
-        self.setStyleSheet(estilo)
         self.inicializar()
 
     def inicializar(self):
@@ -33,9 +31,12 @@ class VentanaDoctor(QDialog, doctor):
         self.btn_guardar.clicked.connect(self.guardar)
         self.btn_eliminar_todo.clicked.connect(self.eliminar)
         self.todos = self.doctor_user.consultar_todos()
-        self.btn_cerrar.clicked.connect(self.closeEvent)
         self.tb_doctores.doubleClicked.connect(self.elegir_dobleclick)
         self.actualizarGrids()
+        self.btn_cerrar.clicked.connect(self.closeEvent)
+
+    def close(self):
+        self.hide()
 
     def actualizarGrids(self):
         self.todos = self.doctor_user.consultar_todos()
@@ -82,9 +83,9 @@ class VentanaDoctor(QDialog, doctor):
             self.txt_direccion.setText('')
             self.txt_mail.setText('')
             self.doctor_user = Doctor()
-            QtGui.QMessageBox.information(self, '¡Enhorabuena!', 'Se ha registrado el doctor', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.information(self, '¡Enhorabuena!', 'Se ha registrado el doctor', QtWidgets.QMessageBox.Ok)
         else:
-            QtGui.QMessageBox.warning(self, 'Error', 'Revisa los datos', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Revisa los datos', QtWidgets.QMessageBox.Ok)
         self.actualizarGrids()
 
     def eliminar(self):
@@ -145,7 +146,6 @@ class VentanaCliente(QDialog, cliente):
     def __init__(self, parent =  None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
-        self.setStyleSheet(estilo)
         self.inicializar()
 
     def inicializar(self):
@@ -154,8 +154,8 @@ class VentanaCliente(QDialog, cliente):
         self.btn_eliminar_todo.clicked.connect(self.eliminar)
         self.todos = self.paciente_user.consultar_todos()
         self.tb_pacientes.doubleClicked.connect(self.elegir_dobleclick)
-        self.btn_cerrar.clicked.connect(self.closeEvent)
         self.actualizarGrids()
+        self.btn_cerrar.clicked.connect(self.closeEvent)
 
     def actualizarGrids(self):
         self.todos = self.paciente_user.consultar_todos()
@@ -192,9 +192,9 @@ class VentanaCliente(QDialog, cliente):
             self.txt_telefono.setText('')
             self.txt_cedula.setText('')
             self.txt_direccion.setText('')
-            QtGui.QMessageBox.information(self, '¡Enhorabuena!', 'Se ha registrado el doctor', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.information(self, '¡Enhorabuena!', 'Se ha registrado el doctor', QtWidgets.QMessageBox.Ok)
         else:
-            QtGui.QMessageBox.warning(self, 'Error', 'Revisa los datos', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Revisa los datos', QtWidgets.QMessageBox.Ok)
         self.actualizarGrids()
 
     def eliminar(self):
@@ -257,7 +257,6 @@ class VentanaConsulta(QDialog, consulta):
     def __init__(self, parent =  None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
-        self.setStyleSheet(estilo)
         self.inicializar()
 
     def inicializar(self):
@@ -267,8 +266,8 @@ class VentanaConsulta(QDialog, consulta):
         self.btn_eliminar_todo.clicked.connect(self.eliminar)
         self.todos = self.consulta_user.consultar_todos()
         self.tb_consultas.doubleClicked.connect(self.elegir_dobleclick)
-        self.btn_cerrar.clicked.connect(self.closeEvent)
         self.tb_documentos.doubleClicked.connect(self.preview_dobleclick)
+        self.btn_cerrar.clicked.connect(self.closeEvent)
         for p in Paciente().consultar_todos():
             self.cbo_paciente.addItem(p.nombres+' '+p.apellidos, p.id)
         self.actualizarGrids()
@@ -282,12 +281,9 @@ class VentanaConsulta(QDialog, consulta):
         selected = self.tb_documentos.selectedIndexes()
         self.selected_index = selected.__getitem__(0)
         doc = self.consulta_user.documentos[self.selected_index.row()]
-        fileName = QtGui.QFileDialog.getSaveFileName(self, "Guardar",
-        '', "All Files (*)")
-        spl =doc.nombre.split('/')
-        name = spl[len(spl)-1]
-        with open(fileName, 'wb') as file_:
-                file_.write(doc.data)
+        outPixmap = QPixmap()
+        outPixmap.loadFromData(doc.data)
+        self.lbl_pixmap.setPixmap(outPixmap)
 
 
     def elegir_dobleclick(self):
@@ -312,7 +308,7 @@ class VentanaConsulta(QDialog, consulta):
         self.consulta_user.doctor = self.doctor_user
         self.consulta_user.observaciones = self.txt_observacion.toPlainText()
         if(self.consulta_user.guardar()):
-            QtGui.QMessageBox.information(self, '¡Enhorabuena!', 'Se ha registrado el consulta', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.information(self, '¡Enhorabuena!', 'Se ha registrado el consulta', QtWidgets.QMessageBox.Ok)
             self.consulta_user = Consulta()
             model = QStandardItemModel()
             model.setColumnCount(len(Documento().headernames))
@@ -320,7 +316,7 @@ class VentanaConsulta(QDialog, consulta):
             self.tb_documentos.setModel(model)
             self.txt_observacion.setPlainText('')
         else:
-            QtGui.QMessageBox.warning(self, 'Error', 'Revisa los datos', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Revisa los datos', QtWidgets.QMessageBox.Ok)
         self.actualizarGrids()
 
     def eliminar(self):
@@ -358,10 +354,10 @@ class VentanaConsulta(QDialog, consulta):
         return consultas
 
     def subirDocumento (self):
-        filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File', '.')
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', '.')
         nuevo_documento = Documento()
-        nuevo_documento.nombre = filename
-        with open(filename, 'rb') as f:
+        nuevo_documento.nombre = filename[0]
+        with open(filename[0], 'rb') as f:
             nuevo_documento.data = f.read()
         self.consulta_user.documentos.append(nuevo_documento)
         self.fillDocumentos()
@@ -388,14 +384,14 @@ class VentanaConsulta(QDialog, consulta):
             QMessageBox.about(self,"Error", "No encontramos nada")
             return
         result = []
-        if self.radioButton_nombre.isChecked():
-           result = self.consulta_user.consultar_By_Atribute(texto, 'nombres')
-        elif self.radioButton_apellido.isChecked():
-           result = self.consulta_user.consultar_By_Atribute(texto, 'apellidos')
-        elif self.radioButton_cedula.isChecked():
-           result = self.consulta_user.consultar_By_Atribute(texto, 'cedula')
+        self.consulta_user = Consulta()
+        if self.radioButton_cliente.isChecked():
+           result = self.consulta_user.paciente.consultar_By_Atribute(texto, 'nombres')
+        elif self.radioButton_observacion.isChecked():
+           result = self.consulta_user.consultar_By_Atribute(texto, 'observaciones')
+        elif self.radioButton_doctor.isChecked():
+           result = self.consulta_user.doctor.consultar_By_Atribute(texto, 'nombres')
         self.fillDataGrid(result, self.tb_consultas)
-
 
     def closeEvent(self):
         self.hide()
@@ -406,13 +402,13 @@ class VentanaReportes(QDialog, reporte):
     def __init__(self, parent =  None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
-        self.setStyleSheet(estilo)
         self.inicializar()
 
     def inicializar(self):
         self.cbo_reporte.addItem('Consultas por doctor')
         self.cbo_reporte.addItem('Pacientes atendidos')
         self.btn_generar.clicked.connect(self.generar)
+        self.btn_cerrar.clicked.connect(self.closeEvent)
 
     def fillDataGrid(self, result, tb):
         model = QStandardItemModel()
@@ -459,7 +455,6 @@ class VentanaAcercaDe(QDialog, acercade):
     def __init__(self, parent =  None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
-        self.setStyleSheet(estilo)
 
 class VentanaPrincipal(QtWidgets.QMainWindow, principal_ui):
     doctor_user = ''
@@ -470,6 +465,8 @@ class VentanaPrincipal(QtWidgets.QMainWindow, principal_ui):
         screen = QtWidgets.QDesktopWidget().screenGeometry()
         self.frame.move((screen.width()-self.frame.geometry().width())/2, (screen.height()-self.frame.geometry().height())/2)
         self.setStyleSheet(estilo)
+        self.setStyleSheet("color : #000;")
+        self.setStyleSheet("background-image: url(fondo.png);")
         self.inicializar()
 
     def setUser(self, doctor_user):
@@ -513,7 +510,6 @@ class Login(QDialog, login):
     def __init__(self,parent=None):
         QtWidgets.QMainWindow.__init__(self,parent)
         self.setupUi(self)
-        self.setStyleSheet(estilo)
         self.boton_iniciarsesion.clicked.connect(self.login_act)
 
     def login_act(self):
@@ -525,7 +521,7 @@ class Login(QDialog, login):
         if result:
             self.accept()
         else:
-            QtGui.QMessageBox.warning(self, 'Error', 'Usuario o contrasena equivocadas', QtGui.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Usuario o contrasena equivocadas', QtWidgets.QMessageBox.Ok)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
