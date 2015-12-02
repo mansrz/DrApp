@@ -1,7 +1,8 @@
 import sys
-from PyQt4 import QtGui,QtCore, uic
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5 import QtGui,QtCore, uic, QtWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 import re
 #CLASES
 from Conexion import *
@@ -18,11 +19,11 @@ acercade = uic.loadUiType('acercade.ui')[0]
 estilo = open('st.stylesheet','r').read()
 principal_ui = uic.loadUiType('principal.ui')[0]
 
-class VentanaDoctor(QtGui.QDialog, doctor):
+class VentanaDoctor(QDialog, doctor):
     doctor_user = Doctor()
 
     def __init__(self, parent =  None):
-        QtGui.QDialog.__init__(self, parent)
+        QDialog.__init__(self, parent)
         self.setupUi(self)
         self.setStyleSheet(estilo)
         self.inicializar()
@@ -32,7 +33,7 @@ class VentanaDoctor(QtGui.QDialog, doctor):
         self.btn_guardar.clicked.connect(self.guardar)
         self.btn_eliminar_todo.clicked.connect(self.eliminar)
         self.todos = self.doctor_user.consultar_todos()
-        self.connect(self.btn_cerrar, QtCore.SIGNAL('clicked()'), self.closeEvent)
+        self.btn_cerrar.clicked.connect(self.closeEvent)
         self.tb_doctores.doubleClicked.connect(self.elegir_dobleclick)
         self.actualizarGrids()
 
@@ -138,11 +139,11 @@ class VentanaDoctor(QtGui.QDialog, doctor):
     def closeEvent(self):
         self.hide()
 
-class VentanaCliente(QtGui.QDialog, cliente):
+class VentanaCliente(QDialog, cliente):
     paciente_user = Paciente()
 
     def __init__(self, parent =  None):
-        QtGui.QDialog.__init__(self, parent)
+        QDialog.__init__(self, parent)
         self.setupUi(self)
         self.setStyleSheet(estilo)
         self.inicializar()
@@ -153,7 +154,7 @@ class VentanaCliente(QtGui.QDialog, cliente):
         self.btn_eliminar_todo.clicked.connect(self.eliminar)
         self.todos = self.paciente_user.consultar_todos()
         self.tb_pacientes.doubleClicked.connect(self.elegir_dobleclick)
-        self.connect(self.btn_cerrar, QtCore.SIGNAL('clicked()'), self.closeEvent)
+        self.btn_cerrar.clicked.connect(self.closeEvent)
         self.actualizarGrids()
 
     def actualizarGrids(self):
@@ -249,24 +250,24 @@ class VentanaCliente(QtGui.QDialog, cliente):
     def closeEvent(self):
         self.hide()
 
-class VentanaConsulta(QtGui.QDialog, consulta):
+class VentanaConsulta(QDialog, consulta):
     consulta_user = Consulta()
     doctor_user = Doctor()
 
     def __init__(self, parent =  None):
-        QtGui.QDialog.__init__(self, parent)
+        QDialog.__init__(self, parent)
         self.setupUi(self)
         self.setStyleSheet(estilo)
         self.inicializar()
 
     def inicializar(self):
         self.btn_documento.clicked.connect(self.subirDocumento)
-        self.connect(self.btn_cerrar, QtCore.SIGNAL('clicked()'), self.closeEvent)
         self.btn_buscar.clicked.connect(self.buscar)
         self.btn_guardar.clicked.connect(self.guardar)
         self.btn_eliminar_todo.clicked.connect(self.eliminar)
         self.todos = self.consulta_user.consultar_todos()
         self.tb_consultas.doubleClicked.connect(self.elegir_dobleclick)
+        self.btn_cerrar.clicked.connect(self.closeEvent)
         self.tb_documentos.doubleClicked.connect(self.preview_dobleclick)
         for p in Paciente().consultar_todos():
             self.cbo_paciente.addItem(p.nombres+' '+p.apellidos, p.id)
@@ -399,11 +400,11 @@ class VentanaConsulta(QtGui.QDialog, consulta):
     def closeEvent(self):
         self.hide()
 
-class VentanaReportes(QtGui.QDialog, reporte):
+class VentanaReportes(QDialog, reporte):
     doctor_user = Doctor()
 
     def __init__(self, parent =  None):
-        QtGui.QDialog.__init__(self, parent)
+        QDialog.__init__(self, parent)
         self.setupUi(self)
         self.setStyleSheet(estilo)
         self.inicializar()
@@ -419,14 +420,14 @@ class VentanaReportes(QtGui.QDialog, reporte):
         model.setHorizontalHeaderLabels(Consulta().headernames)
         consultas = []
         for consulta_result in result:
-          li = [consulta_result.paciente.getNombre(), consulta_result.doctor.getNombre(), consulta_result.observaciones]
-          consultas.append(li)
-          row = []
-          for name in li:
-            item = QStandardItem(str(name))
-            item.setEditable(False)
-            row.append(item)
-          model.appendRow(row)
+            li = [consulta_result.paciente.getNombre(), consulta_result.doctor.getNombre(), consulta_result.observaciones]
+            consultas.append(li)
+            row = []
+            for name in li:
+                item = QStandardItem(str(name))
+                item.setEditable(False)
+                row.append(item)
+        model.appendRow(row)
         tb.setModel(model)
         return consultas
 
@@ -436,14 +437,14 @@ class VentanaReportes(QtGui.QDialog, reporte):
         model.setHorizontalHeaderLabels(Paciente().headernames)
         pacientes = []
         for paciente_result in result:
-          li = [paciente_result.nombres, paciente_result.apellidos, paciente_result.direccion, paciente_result.telefono, paciente_result.cedula]
-          pacientes.append(li)
-          row = []
-          for name in li:
-            item = QStandardItem(str(name))
-            item.setEditable(False)
-            row.append(item)
-          model.appendRow(row)
+            li = [paciente_result.nombres, paciente_result.apellidos, paciente_result.direccion, paciente_result.telefono, paciente_result.cedula]
+            pacientes.append(li)
+            row = []
+            for name in li:
+                item = QStandardItem(str(name))
+                item.setEditable(False)
+                row.append(item)
+        model.appendRow(row)
         tb.setModel(model)
         return pacientes
 
@@ -454,19 +455,19 @@ class VentanaReportes(QtGui.QDialog, reporte):
         elif opcion == 1:
             self.fillDataGrid_2(Paciente().getPacientes(self.doctor_user.id), self.tb_reporte)
 
-class VentanaAcercaDe(QtGui.QDialog, acercade):
+class VentanaAcercaDe(QDialog, acercade):
     def __init__(self, parent =  None):
-        QtGui.QDialog.__init__(self, parent)
+        QDialog.__init__(self, parent)
         self.setupUi(self)
         self.setStyleSheet(estilo)
 
-class VentanaPrincipal(QtGui.QMainWindow, principal_ui):
+class VentanaPrincipal(QtWidgets.QMainWindow, principal_ui):
     doctor_user = ''
 
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self,parent)
+        QtWidgets.QMainWindow.__init__(self,parent)
         self.setupUi(self)
-        screen = QtGui.QDesktopWidget().screenGeometry()
+        screen = QtWidgets.QDesktopWidget().screenGeometry()
         self.frame.move((screen.width()-self.frame.geometry().width())/2, (screen.height()-self.frame.geometry().height())/2)
         self.setStyleSheet(estilo)
         self.inicializar()
@@ -505,12 +506,12 @@ class VentanaPrincipal(QtGui.QMainWindow, principal_ui):
         acercade = VentanaAcercaDe()
         acercade.exec_()
 
-class Login(QtGui.QDialog, login):
+class Login(QDialog, login):
     conexion = Conexion()
     doctor_user = Doctor()
 
     def __init__(self,parent=None):
-        QtGui.QMainWindow.__init__(self,parent)
+        QtWidgets.QMainWindow.__init__(self,parent)
         self.setupUi(self)
         self.setStyleSheet(estilo)
         self.boton_iniciarsesion.clicked.connect(self.login_act)
@@ -527,9 +528,9 @@ class Login(QtGui.QDialog, login):
             QtGui.QMessageBox.warning(self, 'Error', 'Usuario o contrasena equivocadas', QtGui.QMessageBox.Ok)
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     login = Login()
-    if login.exec_() == QtGui.QDialog.Accepted:
+    if login.exec_() == QDialog.Accepted:
         principal = VentanaPrincipal()
         principal.setUser(login.doctor_user)
         principal.showMaximized()

@@ -13,7 +13,7 @@ class Consulta(Objeto):
     extra = ''
     extra2 = ''
 
-    headernames = ['Paciente', 'Doctor', 'Observaciones']
+    headernames = ['Fecha','Paciente', 'Doctor', 'Observaciones']
     atributos = '[consulta_id, consulta_fecha, consulta_paciente, consulta_doctor, consulta_observaciones, consulta_extra, consulta_extra2]'
     tabla = 'consulta'
 
@@ -50,6 +50,7 @@ class Consulta(Objeto):
         return lista
 
     def guardar(self):
+        import datetime
         consulta = 'SELECT * FROM consulta WHERE consulta_id = ?;'
         conexion = self.conexion.getConnection()
         cursor = conexion.cursor()
@@ -59,7 +60,8 @@ class Consulta(Objeto):
             query = self.query_insert + '?,?,?,?,?,?,?' + self.query_insert_end
             print(query)
             try:
-                cursor.execute(query, (pk, self.fecha, self.paciente.id, self.doctor.id, self.observaciones, self.extra, self.extra2))
+                cursor.execute(query, (pk, str(datetime.datetime.now().date())
+, self.paciente.id, self.doctor.id, self.observaciones, self.extra, self.extra2))
                 conexion.commit()
                 cursor.close()
                 print(query)
